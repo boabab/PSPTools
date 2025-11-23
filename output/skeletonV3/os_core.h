@@ -36,13 +36,10 @@ const uint8_t __heap_start;
 //----------------------------------------------------------------------------
 
 //! Initializes timers.
-void os_init_timer(void);
 
 //! Examines the saved MCU status register and possibly prints an error if the reset source is not allowed.
-void os_checkResetSource(uint8_t allowedSources);
 
 //! Initializes OS.
-void os_init(void);
 
 //! Shows error on display and terminates program.
 void os_errorPStr(const char *str);

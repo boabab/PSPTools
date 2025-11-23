@@ -42,12 +42,10 @@ Heap intHeap__;
 //----------------------------------------------------------------------------
 
 //! Initialises all Heaps.
-void os_initHeaps(void);
 
 //! Needed for Taskmanager interaction.
 Heap *os_lookupHeap(uint8_t index);
 
 //! Needed for Taskmanager interaction.
-size_t os_getHeapListLength(void);
 
 #endif

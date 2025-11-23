@@ -33,16 +33,12 @@
 //----------------------------------------------------------------------------
 
 //! Resets system time back to 0.
-void os_systemTime_reset(void);
 
 //! Coarse system time in ms.
-Time os_systemTime_coarse(void);
 
 //! Precise system time in ms.
-Time os_systemTime_precise(void);
 
 //! Waits for some milliseconds.
-void delayMs(Time ms);
 
 //! Simple assertion function that calls os_error if given expression is not true.
 bool assertPstr(bool exp, const char *errormsg);
