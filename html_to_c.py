@@ -335,7 +335,11 @@ def _render_file_header(doc: FileDoc) -> str:
     out = ["/*! \\file"]
     wrapper = textwrap.TextWrapper(width=MAX_LINE_WIDTH, initial_indent=" * ", subsequent_indent=" * ")
 
-    if doc.brief and doc.brief != doc.detailed:
+
+
+    if doc.detailed and doc.brief and "".join(doc.brief.split()).replace("\n", " ") in "".join(doc.detailed.split()).replace("\n", " "):
+        pass
+    elif doc.brief and doc.brief != doc.detailed:
         out.append(f" * \\brief {doc.brief}")
     
     if doc.detailed:

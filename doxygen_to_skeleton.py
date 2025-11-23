@@ -7,9 +7,9 @@ import re
 from pathlib import Path
 from zipfile import ZipFile
 from tempfile import TemporaryDirectory
+from shutil import make_archive   # NEW
 
 import html_to_c
-
 
 # ---------------------------------------------------------------------------
 # Configuration
@@ -34,10 +34,6 @@ def _html_to_source_name(html_filename: str) -> str | None:
 
 
 def find_doxygen_files(zip_path: str | os.PathLike) -> list[tuple[str, str]]:
-    """
-    Return a list of (html_path_inside_zip, reconstructed_source_path).
-    Example: ('lcd_8c.html', 'lcd.c')
-    """
     zip_path = Path(zip_path)
     results: list[tuple[str, str]] = []
 
@@ -62,10 +58,6 @@ def find_doxygen_files(zip_path: str | os.PathLike) -> list[tuple[str, str]]:
 
 def create_skeleton_sources(zip_path: str | os.PathLike,
                             output_root: str | os.PathLike) -> None:
-    """
-    For each *_8c.html / *_8h.html in the zip, uses html_to_c.generate_from_html
-    to build a C/H skeleton and writes it to output_root.
-    """
     output_root = Path(output_root)
     files = find_doxygen_files(zip_path)
 
@@ -73,16 +65,13 @@ def create_skeleton_sources(zip_path: str | os.PathLike,
         tmpdir = Path(tmpdir_str)
 
         for html_inside, src_rel in files:
-            # write HTML from zip to a temporary file so html_to_c can read it
             html_bytes = zf.read(html_inside)
             temp_html = tmpdir / Path(html_inside).name
             temp_html.write_bytes(html_bytes)
 
-            # decide kind based on target extension
             ext = Path(src_rel).suffix.lower()
             kind = "h" if ext == ".h" else "c"
 
-            # delegate to html_to_c
             content = html_to_c.generate_code(temp_html, output_kind=kind)
 
             out_path = output_root / src_rel
@@ -113,8 +102,18 @@ def main() -> None:
     args = parser.parse_args()
 
     if args.output:
-        create_skeleton_sources(args.zip, args.output)
+        output_dir = Path(args.output)
+        create_skeleton_sources(args.zip, output_dir)
         print(f"Skeleton .c/.h files created under: {args.output}")
+
+        # NEW: create zip of the generated output directory
+        make_archive(
+            base_name=str(output_dir),
+            format="zip",
+            root_dir=output_dir.parent,
+            base_dir=output_dir.name
+        )
+        print(f"Created zip: {output_dir}.zip")
 
 
 if __name__ == "__main__":
