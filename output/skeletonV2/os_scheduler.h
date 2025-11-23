@@ -27,33 +27,23 @@ typedef enum SchedulingStrategy SchedulingStrategy;
 //----------------------------------------------------------------------------
 
 //! Get a pointer to the process structure by process ID.
-Process * os_getProcessSlot(ProcessID pid);
 
 //! Starts the scheduler.
-void os_startScheduler(void);
 
 //! Executes a process by instantiating a program.
-ProcessID os_exec(Program * program , Priority priority);
 
 //! Initializes scheduler arrays.
-void os_initScheduler(void);
 
 //! Returns the currently active process.
-ProcessID os_getCurrentProc(void);
 
 //! Sets the scheduling strategy.
-void os_setSchedulingStrategy(SchedulingStrategy strategy);
 
 //! Gets the current scheduling strategy.
-SchedulingStrategy os_getSchedulingStrategy(void);
 
 //! Calculates the checksum of the stack for the corresponding process of pid.
-StackChecksum os_getStackChecksum(ProcessID pid);
 
 //! Enters a critical code section.
-void os_enterCriticalSection(void);
 
 //! Leaves a critical code section.
-void os_leaveCriticalSection(void);
 
 #endif

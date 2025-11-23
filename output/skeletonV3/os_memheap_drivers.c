@@ -30,7 +30,7 @@ Heap intHeap__;
  *
  * @param heap     The heap to be initialised
  */
-void os_initHeap(Heap * heap) {
+void os_initHeap(Heap *heap) {
     // TODO implement.
 }
 
@@ -47,7 +47,7 @@ void os_initHeaps(void) {
  *
  * @param index    Index of the desired Heap
  */
-Heap * os_lookupHeap(uint8_t index) {
+Heap *os_lookupHeap(uint8_t index) {
     // TODO implement.
 }
 

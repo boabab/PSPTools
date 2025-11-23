@@ -59,6 +59,5 @@ struct program_linked_list_node * autostart_head extern;
 //----------------------------------------------------------------------------
 
 //! Returns whether the passed process can be selected to run.
-bool os_isRunnable(const Process * process);
 
 #endif

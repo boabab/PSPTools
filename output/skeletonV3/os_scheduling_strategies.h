@@ -26,24 +26,17 @@ typedef struct SchedulingInformation SchedulingInformation;
 //----------------------------------------------------------------------------
 
 //! Used to reset the SchedulingInfo for one process.
-void os_resetProcessSchedulingInformation(ProcessID id);
 
 //! Used to reset the SchedulingInfo for a strategy.
-void os_resetSchedulingInformation(SchedulingStrategy strategy);
 
 //! Even strategy.
-ProcessID os_Scheduler_Even(const Process processes [], ProcessID current);
 
 //! Random strategy.
-ProcessID os_Scheduler_Random(const Process processes [], ProcessID current);
 
 //! RoundRobin strategy.
-ProcessID os_Scheduler_RoundRobin(const Process processes [], ProcessID current);
 
 //! InactiveAging strategy.
-ProcessID os_Scheduler_InactiveAging(const Process processes [], ProcessID current);
 
 //! RunToCompletion strategy.
-ProcessID os_Scheduler_RunToCompletion(const Process processes [], ProcessID current);
 
 #endif

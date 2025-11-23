@@ -387,11 +387,15 @@ def _render_symbol(sym: SymbolDoc, output_kind: str) -> str:
 
     sig = sym.signature.strip()
     
-    if sym.kind == "function" and output_kind == "c":
-        sig = sig.rstrip(";").strip()
-        code_lines.append(f"{sig} {{")
-        code_lines.append("    // TODO implement.")
-        code_lines.append("}")
+    if sym.kind == "function":
+        # format ugly signatures
+        # e.g. func(Heap * heap , size_t size) -> func(Heap *heap, size_t size)
+        sig = sig.replace(' ,', ',').replace('* ', '*')
+        if output_kind == "c":
+            sig = sig.rstrip(";").strip()
+            code_lines.append(f"{sig} {{")
+            code_lines.append("    // TODO implement.")
+            code_lines.append("}")
     else:
         if _needs_semicolon(sig):
             sig += ";"

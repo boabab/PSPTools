@@ -20,6 +20,5 @@
 // Functions
 //----------------------------------------------------------------------------
 
-AccessPermission os_askPermission(PermissionRequest pr , RequestArgument ra , RequestArgumentFlag raf , const char ** reason);
 
 #endif
