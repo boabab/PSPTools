@@ -65,6 +65,6 @@ void os_init(void) {
  *
  * @param str      The error to be displayed
  */
-void os_errorPStr(const char * str) {
+void os_errorPStr(const char *str) {
     // TODO implement.
 }

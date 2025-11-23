@@ -24,7 +24,7 @@
  * @param addr     The address on which the lower nibble is supposed to be changed
  * @param value    The value that the lower nibble of the given addr is supposed to get
  */
-void setLowNibble(const Heap * heap , MemAddr addr , MemValue value) {
+void setLowNibble(const Heap *heap, MemAddr addr, MemValue value) {
     // TODO implement.
 }
 
@@ -35,7 +35,7 @@ void setLowNibble(const Heap * heap , MemAddr addr , MemValue value) {
  * @param addr     The address on which the higher nibble is supposed to be changed
  * @param value    The value that the higher nibble of the given addr is supposed to get
  */
-void setHighNibble(const Heap * heap , MemAddr addr , MemValue value) {
+void setHighNibble(const Heap *heap, MemAddr addr, MemValue value) {
     // TODO implement.
 }
 
@@ -45,7 +45,7 @@ void setHighNibble(const Heap * heap , MemAddr addr , MemValue value) {
  * @param heap     The heap that is read from
  * @param addr     The address which the lower nibble is supposed to be read from
  */
-MemValue getLowNibble(const Heap * heap , MemAddr addr) {
+MemValue getLowNibble(const Heap *heap, MemAddr addr) {
     // TODO implement.
 }
 
@@ -55,7 +55,7 @@ MemValue getLowNibble(const Heap * heap , MemAddr addr) {
  * @param heap     The heap that is read from
  * @param addr     The address which the higher nibble is supposed to be read from
  */
-MemValue getHighNibble(const Heap * heap , MemAddr addr) {
+MemValue getHighNibble(const Heap *heap, MemAddr addr) {
     // TODO implement.
 }
 
@@ -66,7 +66,7 @@ MemValue getHighNibble(const Heap * heap , MemAddr addr) {
  * @param addr     The address in use space for which the corresponding map entry shall be set
  * @param value    The value that is supposed to be set onto the map (valid range: 0x0 - 0xF)
  */
-void setMapEntry(const Heap * heap , MemAddr addr , MemValue value) {
+void setMapEntry(const Heap *heap, MemAddr addr, MemValue value) {
     // TODO implement.
 }
 
@@ -77,7 +77,7 @@ void setMapEntry(const Heap * heap , MemAddr addr , MemValue value) {
  * @param heap     The heap from whos map the entry is supposed to be fetched
  * @param addr     The address in use space for which the corresponding map entry shall be fetched
  */
-MemValue os_getMapEntry(const Heap * heap , MemAddr addr) {
+MemValue os_getMapEntry(const Heap *heap, MemAddr addr) {
     // TODO implement.
 }
 
@@ -89,7 +89,7 @@ MemValue os_getMapEntry(const Heap * heap , MemAddr addr) {
  * @param heap     The heap the chunk is on hand in
  * @param addr     The address that points to some byte of the chunk
  */
-MemAddr os_getFirstByteOfChunk(const Heap * heap , MemAddr addr) {
+MemAddr os_getFirstByteOfChunk(const Heap *heap, MemAddr addr) {
     // TODO implement.
 }
 
@@ -100,7 +100,7 @@ MemAddr os_getFirstByteOfChunk(const Heap * heap , MemAddr addr) {
  * @param heap     The heap the chunk is on hand in
  * @param addr     The address that points to some byte of the chunk
  */
-ProcessID getOwnerOfChunk(const Heap * heap , MemAddr addr) {
+ProcessID getOwnerOfChunk(const Heap *heap, MemAddr addr) {
     // TODO implement.
 }
 
@@ -111,7 +111,7 @@ ProcessID getOwnerOfChunk(const Heap * heap , MemAddr addr) {
  * @param heap     The driver to be used.
  * @param addr     An address of the use-heap.
  */
-uint16_t os_getChunkSize(const Heap * heap , MemAddr addr) {
+uint16_t os_getChunkSize(const Heap *heap, MemAddr addr) {
     // TODO implement.
 }
 
@@ -125,7 +125,7 @@ uint16_t os_getChunkSize(const Heap * heap , MemAddr addr) {
  * @param addr     An address inside of the chunk (not necessarily the start).
  * @param owner    The expected owner of the chunk to be freed
  */
-void os_freeOwnerRestricted(Heap * heap , MemAddr addr , ProcessID owner) {
+void os_freeOwnerRestricted(Heap *heap, MemAddr addr, ProcessID owner) {
     // TODO implement.
 }
 
@@ -138,7 +138,7 @@ void os_freeOwnerRestricted(Heap * heap , MemAddr addr , ProcessID owner) {
  * @param size     The amount of memory to be allocated in Bytes. Must be able to handle a single
  *                byte and values greater than 255.
  */
-MemAddr os_malloc(Heap * heap , size_t size) {
+MemAddr os_malloc(Heap *heap, size_t size) {
     // TODO implement.
 }
 
@@ -148,7 +148,7 @@ MemAddr os_malloc(Heap * heap , size_t size) {
  * @param heap     The driver to be used.
  * @param addr     An address inside of the chunk (not necessarily the start).
  */
-void os_free(Heap * heap , MemAddr addr) {
+void os_free(Heap *heap, MemAddr addr) {
     // TODO implement.
 }
 
@@ -157,7 +157,7 @@ void os_free(Heap * heap , MemAddr addr) {
  *
  * @param heap     The heap to be used.
  */
-size_t os_getMapSize(const Heap * heap) {
+size_t os_getMapSize(const Heap *heap) {
     // TODO implement.
 }
 
@@ -167,7 +167,7 @@ size_t os_getMapSize(const Heap * heap) {
  *
  * @param heap     The heap to be used.
  */
-size_t os_getUseSize(const Heap * heap) {
+size_t os_getUseSize(const Heap *heap) {
     // TODO implement.
 }
 
@@ -177,7 +177,7 @@ size_t os_getUseSize(const Heap * heap) {
  *
  * @param heap     The heap to be used.
  */
-MemAddr os_getMapStart(const Heap * heap) {
+MemAddr os_getMapStart(const Heap *heap) {
     // TODO implement.
 }
 
@@ -187,7 +187,7 @@ MemAddr os_getMapStart(const Heap * heap) {
  *
  * @param heap     The heap to be used.
  */
-MemAddr os_getUseStart(const Heap * heap) {
+MemAddr os_getUseStart(const Heap *heap) {
     // TODO implement.
 }
 
@@ -197,7 +197,7 @@ MemAddr os_getUseStart(const Heap * heap) {
  * @param heap     The heap of which the allocation strategy shall be changed
  * @param allocStrat The strategy is changed to allocStrat
  */
-void os_setAllocationStrategy(Heap * heap , AllocStrategy allocStrat) {
+void os_setAllocationStrategy(Heap *heap, AllocStrategy allocStrat) {
     // TODO implement.
 }
 
@@ -207,7 +207,7 @@ void os_setAllocationStrategy(Heap * heap , AllocStrategy allocStrat) {
  *
  * @param heap     The heap of which the allocation strategy is returned
  */
-AllocStrategy os_getAllocationStrategy(const Heap * heap) {
+AllocStrategy os_getAllocationStrategy(const Heap *heap) {
     // TODO implement.
 }
 
@@ -218,6 +218,6 @@ AllocStrategy os_getAllocationStrategy(const Heap * heap) {
  * @param heap     The heap on which we look for allocated memory
  * @param pid      The ProcessID of the process that owns all the memory to be freed
  */
-void os_freeProcessMemory(Heap * heap , ProcessID pid) {
+void os_freeProcessMemory(Heap *heap, ProcessID pid) {
     // TODO implement.
 }

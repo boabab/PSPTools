@@ -45,6 +45,6 @@ Time os_systemTime_precise(void);
 void delayMs(Time ms);
 
 //! Simple assertion function that calls os_error if given expression is not true.
-bool assertPstr(bool exp , const char * errormsg);
+bool assertPstr(bool exp, const char *errormsg);
 
 #endif

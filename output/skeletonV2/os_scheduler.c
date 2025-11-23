@@ -84,7 +84,7 @@ void idle(void) {
  *                most favourable Note that the priority may be ignored by certain scheduling
  *                strategies.
  */
-ProcessID os_exec(Program * program , Priority priority) {
+ProcessID os_exec(Program *program, Priority priority) {
     // TODO implement.
 }
 
@@ -110,7 +110,7 @@ void os_initScheduler(void) {
  *
  * @param pid      The processID of the process to be handled
  */
-Process * os_getProcessSlot(ProcessID pid) {
+Process *os_getProcessSlot(ProcessID pid) {
     // TODO implement.
 }
 

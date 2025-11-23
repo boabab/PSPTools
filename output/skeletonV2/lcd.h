@@ -123,10 +123,10 @@ void lcd_line1(void);
 void lcd_line2(void);
 
 //! Next output will be written at (row, column)
-void lcd_goto(unsigned char row , unsigned char column);
+void lcd_goto(unsigned char row, unsigned char column);
 
 //! Next output will be written at (currRow+row, currCol+column)
-void lcd_move(char row , char column);
+void lcd_move(char row, char column);
 
 //! Go back one character (does not remove the character)
 void lcd_back(void);
@@ -168,24 +168,24 @@ void lcd_writeHex(uint16_t number);
 void lcd_writeDec(uint16_t number);
 
 //! Write text string.
-void lcd_writeString(const char * text);
+void lcd_writeString(const char *text);
 
 //! Write char PROGMEM* string.
-void lcd_writeProgString(const char * string);
+void lcd_writeProgString(const char *string);
 
 //! Write char PROGMEM* string as an error.
-void lcd_writeErrorProgString(const char * string);
+void lcd_writeErrorProgString(const char *string);
 
 //! Write a draw bar.
 void lcd_drawBar(uint8_t percent);
 
 //! Register a custom designed character with the LCD.
-void lcd_registerCustomChar(uint8_t addr , uint64_t chr);
+void lcd_registerCustomChar(uint8_t addr, uint64_t chr);
 
 //! Write a 32 bit number.
 void lcd_write32bitHex(uint32_t number);
 
 //! Write a voltage with valueUpperBound as float voltage with voltUpperBound.
-void lcd_writeVoltage(uint16_t voltage , uint16_t valueUpperBound , uint8_t voltUpperBound);
+void lcd_writeVoltage(uint16_t voltage, uint16_t valueUpperBound, uint8_t voltUpperBound);
 
 #endif

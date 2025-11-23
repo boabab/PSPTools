@@ -19,7 +19,7 @@
  * @param heap     The heap in which we want to find a free chunk
  * @param size     The size of the desired free chunk
  */
-MemAddr os_Memory_FirstFit(Heap * heap , size_t size) {
+MemAddr os_Memory_FirstFit(Heap *heap, size_t size) {
     // TODO implement.
 }
 
@@ -30,7 +30,7 @@ MemAddr os_Memory_FirstFit(Heap * heap , size_t size) {
  * @param heap     The heap in which we want to find a free chunk
  * @param size     The size of the desired free chunk
  */
-MemAddr os_Memory_NextFit(Heap * heap , size_t size) {
+MemAddr os_Memory_NextFit(Heap *heap, size_t size) {
     // TODO implement.
 }
 
@@ -41,7 +41,7 @@ MemAddr os_Memory_NextFit(Heap * heap , size_t size) {
  * @param heap     The heap in which we want to find a free chunk
  * @param size     The size of the desired free chunk
  */
-MemAddr os_Memory_WorstFit(Heap * heap , size_t size) {
+MemAddr os_Memory_WorstFit(Heap *heap, size_t size) {
     // TODO implement.
 }
 
@@ -52,6 +52,6 @@ MemAddr os_Memory_WorstFit(Heap * heap , size_t size) {
  * @param heap     The heap in which we want to find a free chunk
  * @param size     The size of the desired free chunk
  */
-MemAddr os_Memory_BestFit(Heap * heap , size_t size) {
+MemAddr os_Memory_BestFit(Heap *heap, size_t size) {
     // TODO implement.
 }

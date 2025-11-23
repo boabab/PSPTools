@@ -91,7 +91,7 @@ void lcd_home(void) {
  * @param row      Advance this many rows.
  * @param column   Advance this many columns.
  */
-void lcd_move(char row , char column) {
+void lcd_move(char row, char column) {
     // TODO implement.
 }
 
@@ -102,7 +102,7 @@ void lcd_move(char row , char column) {
  * @param row      The row to jump to (may be 1 or 2).
  * @param column   The column to jump to (may be 1...16).
  */
-void lcd_goto(unsigned char row , unsigned char column) {
+void lcd_goto(unsigned char row, unsigned char column) {
     // TODO implement.
 }
 
@@ -113,7 +113,7 @@ void lcd_goto(unsigned char row , unsigned char column) {
  * @param firstByte The first value to send.
  * @param secondByte The second value to send.
  */
-void lcd_sendStream(uint8_t firstByte , uint8_t secondByte) {
+void lcd_sendStream(uint8_t firstByte, uint8_t secondByte) {
     // TODO implement.
 }
 
@@ -213,7 +213,7 @@ void lcd_writeDec(uint16_t number) {
  *
  * @param text     The string to be written (a pointer to the first character).
  */
-void lcd_writeString(const char * text) {
+void lcd_writeString(const char *text) {
     // TODO implement.
 }
 
@@ -236,7 +236,7 @@ void lcd_drawBar(uint8_t percent) {
  *
  * @param string   The string to be written (a pointer to the first character).
  */
-void lcd_writeProgString(const char * string) {
+void lcd_writeProgString(const char *string) {
     // TODO implement.
 }
 
@@ -246,7 +246,7 @@ void lcd_writeProgString(const char * string) {
  *
  * @param string   The string to be written (a pointer to the first character).
  */
-void lcd_writeErrorProgString(const char * string) {
+void lcd_writeErrorProgString(const char *string) {
     // TODO implement.
 }
 
@@ -258,7 +258,7 @@ void lcd_writeErrorProgString(const char * string) {
  *                modulo 8.
  * @param chr      The passed value is one 64 bit integer which holds all rows of the character.
  */
-void lcd_registerCustomChar(uint8_t addr , uint64_t chr) {
+void lcd_registerCustomChar(uint8_t addr, uint64_t chr) {
     // TODO implement.
 }
 
@@ -278,6 +278,6 @@ void lcd_write32bitHex(uint32_t number) {
  * @param valueUpperBound Upper bound of the binary voltage value (i.e. 1023 for 10-bit value).
  * @param voltUpperBound Upper bound of the float voltage value (i.e. 5 for 5V).
  */
-void lcd_writeVoltage(uint16_t voltage , uint16_t valueUpperBound , uint8_t voltUpperBound) {
+void lcd_writeVoltage(uint16_t voltage, uint16_t valueUpperBound, uint8_t voltUpperBound) {
     // TODO implement.
 }

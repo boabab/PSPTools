@@ -47,7 +47,7 @@ MemValue readSRAM_internal(MemAddr addr) {
  * @param addr     The address the value shall be written to
  * @param value    The value to be written
  */
-void writeSRAM_internal(MemAddr addr , MemValue value) {
+void writeSRAM_internal(MemAddr addr, MemValue value) {
     // TODO implement.
 }
 

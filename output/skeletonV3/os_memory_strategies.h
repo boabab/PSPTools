@@ -17,15 +17,15 @@
 //----------------------------------------------------------------------------
 
 //! First-fit strategy.
-MemAddr os_Memory_FirstFit(Heap * heap , size_t size);
+MemAddr os_Memory_FirstFit(Heap *heap, size_t size);
 
 //! Next-fit strategy.
-MemAddr os_Memory_NextFit(Heap * heap , size_t size);
+MemAddr os_Memory_NextFit(Heap *heap, size_t size);
 
 //! Best-fit strategy.
-MemAddr os_Memory_BestFit(Heap * heap , size_t size);
+MemAddr os_Memory_BestFit(Heap *heap, size_t size);
 
 //! Worst-fit strategy.
-MemAddr os_Memory_WorstFit(Heap * heap , size_t size);
+MemAddr os_Memory_WorstFit(Heap *heap, size_t size);
 
 #endif

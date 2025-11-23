@@ -108,6 +108,6 @@ void delayMs(Time ms) {
  * @param errormsg The string that shall be shown as an error message if the given expression is
  *                false.
  */
-bool assertPstr(bool exp , const char * errormsg) {
+bool assertPstr(bool exp, const char *errormsg) {
     // TODO implement.
 }

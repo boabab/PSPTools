@@ -27,13 +27,13 @@ typedef enum SchedulingStrategy SchedulingStrategy;
 //----------------------------------------------------------------------------
 
 //! Get a pointer to the process structure by process ID.
-Process * os_getProcessSlot(ProcessID pid);
+Process *os_getProcessSlot(ProcessID pid);
 
 //! Starts the scheduler.
 void os_startScheduler(void);
 
 //! Executes a process by instantiating a program.
-ProcessID os_exec(Program * program , Priority priority);
+ProcessID os_exec(Program *program, Priority priority);
 
 //! Initializes scheduler arrays.
 void os_initScheduler(void);

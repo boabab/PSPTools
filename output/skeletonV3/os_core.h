@@ -45,6 +45,6 @@ void os_checkResetSource(uint8_t allowedSources);
 void os_init(void);
 
 //! Shows error on display and terminates program.
-void os_errorPStr(const char * str);
+void os_errorPStr(const char *str);
 
 #endif
