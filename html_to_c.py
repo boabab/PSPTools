@@ -45,6 +45,7 @@ class FileDoc:
     includes: list[str] = field(default_factory=list)
     macros: list[SymbolDoc] = field(default_factory=list)
     variables: list[SymbolDoc] = field(default_factory=list)
+    typedefs: list[SymbolDoc] = field(default_factory=list)
     functions: list[SymbolDoc] = field(default_factory=list)
 
 # ---------------------------------------------------------------------------
@@ -259,9 +260,10 @@ def _parse_members(soup: BeautifulSoup) -> tuple[list[SymbolDoc], list[SymbolDoc
 
         details_map[member_id] = (signature, detailed_text, params_list)
 
-    macros, vars, funcs = [], [], []
+    macros, typedefs, vars, funcs = [], [], [], []
     section_map = {
         "Macros": ("macro", macros),
+        "Typedefs": ("typedef", typedefs),
         "Variables": ("variable", vars),
         "Functions": ("function", funcs),
     }
@@ -320,7 +322,7 @@ def _parse_members(soup: BeautifulSoup) -> tuple[list[SymbolDoc], list[SymbolDoc
             params=params_list
         ))
 
-    return macros, vars, funcs
+    return macros, typedefs, vars, funcs
 
 # ---------------------------------------------------------------------------
 # Output Generation
@@ -397,7 +399,7 @@ def generate_code(html_path: str | Path, output_kind: str = "c") -> str:
     html = Path(html_path).read_text(encoding="utf-8", errors="ignore")
     soup = BeautifulSoup(html, "html.parser")
 
-    macros, vars, funcs = _parse_members(soup)
+    macros, typedefs, vars, funcs = _parse_members(soup)
     detailed_text, sections = _extract_file_detailed(soup)
     
     doc = FileDoc(
@@ -406,6 +408,7 @@ def generate_code(html_path: str | Path, output_kind: str = "c") -> str:
         sections=sections,
         includes=_extract_includes(soup),
         macros=macros,
+        typedefs=typedefs,
         variables=vars,
         functions=funcs
     )
@@ -421,6 +424,7 @@ def generate_code(html_path: str | Path, output_kind: str = "c") -> str:
 
     groups = [
         ("Macros", doc.macros),
+        ("Typedefs", doc.typedefs),
         ("Variables", doc.variables),
         ("Functions", doc.functions)
     ]
