@@ -8,6 +8,9 @@
  *
  */
 
+#ifndef _OS_MEM_DRIVERS_H
+#define _OS_MEM_DRIVERS_H
+
 #include "defines.h"
 #include <inttypes.h>
 
@@ -56,3 +59,5 @@ MemDriver intSRAM__;
 
 //! Initialise all memory devices.
 void initMemoryDevices(void);
+
+#endif

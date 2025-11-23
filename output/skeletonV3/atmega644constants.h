@@ -5,6 +5,9 @@
  *
  */
 
+#ifndef _ATMEGA644CONSTANTS_H
+#define _ATMEGA644CONSTANTS_H
+
 #include <avr/io.h>
 
 //----------------------------------------------------------------------------
@@ -34,3 +37,5 @@
 
 //! FLASH memory available on AVR (in bytes) (64 KB)
 #define AVR_MEMORY_FLASH(FLASHEND + 1ul)
+
+#endif

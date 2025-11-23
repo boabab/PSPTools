@@ -7,6 +7,9 @@
  *
  */
 
+#ifndef _OS_SCHEDULING_STRATEGIES_H
+#define _OS_SCHEDULING_STRATEGIES_H
+
 #include "defines.h"
 #include "os_scheduler.h"
 
@@ -42,3 +45,5 @@ ProcessID os_Scheduler_InactiveAging(const Process processes [], ProcessID curre
 
 //! RunToCompletion strategy.
 ProcessID os_Scheduler_RunToCompletion(const Process processes [], ProcessID current);
+
+#endif

@@ -8,6 +8,9 @@
  *
  */
 
+#ifndef _DEFINES_H
+#define _DEFINES_H
+
 #include "atmega644constants.h"
 
 //----------------------------------------------------------------------------
@@ -53,3 +56,5 @@
 
 //! Offset needed before the Heap starts, because global variables are put on the low addresses of the SRAM.
 #define HEAPOFFSET 250
+
+#endif

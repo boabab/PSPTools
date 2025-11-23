@@ -5,6 +5,9 @@
  *
  */
 
+#ifndef _OS_MEMORY_H
+#define _OS_MEMORY_H
+
 #include "os_mem_drivers.h"
 #include "os_memheap_drivers.h"
 #include "os_scheduler.h"
@@ -51,3 +54,5 @@ void os_setAllocationStrategy(Heap * heap , AllocStrategy allocStrat);
 
 //! Returns the current memory management strategy.
 AllocStrategy os_getAllocationStrategy(const Heap * heap);
+
+#endif

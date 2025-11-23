@@ -8,6 +8,9 @@
  *
  */
 
+#ifndef _OS_USER_PRIVILEGES_H
+#define _OS_USER_PRIVILEGES_H
+
 #include "defines.h"
 #include "os_scheduler.h"
 #include <avr/pgmspace.h>
@@ -19,3 +22,5 @@
 //----------------------------------------------------------------------------
 
 AccessPermission os_askPermission(PermissionRequest pr , RequestArgument ra , RequestArgumentFlag raf , const char ** reason);
+
+#endif

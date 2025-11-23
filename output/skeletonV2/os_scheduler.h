@@ -7,6 +7,9 @@
  *
  */
 
+#ifndef _OS_SCHEDULER_H
+#define _OS_SCHEDULER_H
+
 #include "defines.h"
 #include "os_process.h"
 #include <stdbool.h>
@@ -52,3 +55,5 @@ void os_enterCriticalSection(void);
 
 //! Leaves a critical code section.
 void os_leaveCriticalSection(void);
+
+#endif

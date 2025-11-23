@@ -8,6 +8,9 @@
  *
  */
 
+#ifndef _DEFINES_H
+#define _DEFINES_H
+
 #include "atmega644constants.h"
 
 //----------------------------------------------------------------------------
@@ -50,3 +53,5 @@
 
 //! The bottom of the memory chunk with number PID.
 #define PROCESS_STACK_BOTTOM(PID)(BOTTOM_OF_PROCS_STACK -((PID)* STACK_SIZE_PROC))
+
+#endif

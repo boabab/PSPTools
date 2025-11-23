@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import argparse
+import os
 import re
 import textwrap
 from dataclasses import dataclass, field
@@ -423,6 +424,14 @@ def generate_code(html_path: str | Path, output_kind: str = "c") -> str:
         sections_out.append(header)
         sections_out.append("")
 
+    if output_kind == "h":
+        file_name = os.path.basename(html_path)
+        from doxygen_to_skeleton import html_to_source_name
+        def_name = "_" + html_to_source_name(file_name).replace(".", "_").upper()
+        sections_out.append(f"#ifndef {def_name}")
+        sections_out.append(f"#define {def_name}")
+        sections_out.append("")
+
     if doc.includes:
         sections_out.extend(doc.includes)
 
@@ -443,6 +452,9 @@ def generate_code(html_path: str | Path, output_kind: str = "c") -> str:
 
             for sym in group_list:
                 sections_out.append(_render_symbol(sym, output_kind))
+
+    if output_kind == "h":
+        sections_out.append("#endif")
 
     return "\n".join(sections_out).strip() + "\n"
 

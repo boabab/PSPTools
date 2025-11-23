@@ -8,6 +8,9 @@
  *
  */
 
+#ifndef _LCD_H
+#define _LCD_H
+
 #include <avr/pgmspace.h>
 #include <stdbool.h>
 #include <stdint.h>
@@ -184,3 +187,5 @@ void lcd_write32bitHex(uint32_t number);
 
 //! Write a voltage with valueUpperBound as float voltage with voltUpperBound.
 void lcd_writeVoltage(uint16_t voltage , uint16_t valueUpperBound , uint8_t voltUpperBound);
+
+#endif

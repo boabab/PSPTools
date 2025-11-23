@@ -7,6 +7,9 @@
  *
  */
 
+#ifndef _OS_TASKMAN_H
+#define _OS_TASKMAN_H
+
 #include <stdbool.h>
 
 //----------------------------------------------------------------------------
@@ -18,3 +21,5 @@ void os_taskManMain(void);
 
 //! Returns true if the TaskManager is currently open.
 bool os_taskManOpen(void);
+
+#endif

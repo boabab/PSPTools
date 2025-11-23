@@ -7,6 +7,9 @@
  *
  */
 
+#ifndef _UTIL_H
+#define _UTIL_H
+
 #include <avr/pgmspace.h>
 #include <stdbool.h>
 #include <stdint.h>
@@ -43,3 +46,5 @@ void delayMs(Time ms);
 
 //! Simple assertion function that calls os_error if given expression is not true.
 bool assertPstr(bool exp , const char * errormsg);
+
+#endif

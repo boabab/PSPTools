@@ -7,6 +7,9 @@
  *
  */
 
+#ifndef _OS_MEMHEAP_DRIVERS_H
+#define _OS_MEMHEAP_DRIVERS_H
+
 #include "os_mem_drivers.h"
 #include <stddef.h>
 
@@ -46,3 +49,5 @@ Heap * os_lookupHeap(uint8_t index);
 
 //! Needed for Taskmanager interaction.
 size_t os_getHeapListLength(void);
+
+#endif

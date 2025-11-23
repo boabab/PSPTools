@@ -7,6 +7,9 @@
  *
  */
 
+#ifndef _OS_INPUT_H
+#define _OS_INPUT_H
+
 #include <stdint.h>
 
 //----------------------------------------------------------------------------
@@ -24,3 +27,5 @@ void os_waitForNoInput(void);
 
 //! Waits for at least one button to be pressed.
 void os_waitForInput(void);
+
+#endif

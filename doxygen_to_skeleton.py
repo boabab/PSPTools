@@ -23,7 +23,7 @@ DEFAULT_OUTPUT_ENCODING = "utf-8"
 OVERWRITE_EXISTING = True
 
 
-def _html_to_source_name(html_filename: str) -> str | None:
+def html_to_source_name(html_filename: str) -> str | None:
     base = os.path.basename(html_filename)
     m = re.match(r"(.+)_8([ch])\.html$", base)
     if not m:
@@ -45,7 +45,7 @@ def find_doxygen_files(zip_path: str | os.PathLike) -> list[tuple[str, str]]:
             if not name.endswith(HTML_FILE_SUFFIXES):
                 continue
 
-            src_name = _html_to_source_name(name)
+            src_name = html_to_source_name(name)
             if src_name is None:
                 continue
 
