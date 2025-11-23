@@ -1,0 +1,57 @@
+/*! \file
+ * \brief Scheduling module for the OS.
+ *
+ * Contains the scheduler and process switching functionality for the OS.
+ *
+ * \author Lehrstuhl Informatik 11 - RWTH Aachen
+ *
+ */
+
+#include "defines.h"
+#include "os_process.h"
+#include <stdbool.h>
+
+//----------------------------------------------------------------------------
+// Typedefs
+//----------------------------------------------------------------------------
+
+//! The enum specifying which scheduling strategies exist.
+typedef enum SchedulingStrategy SchedulingStrategy;
+
+
+//----------------------------------------------------------------------------
+// Functions
+//----------------------------------------------------------------------------
+
+//! Get a pointer to the process structure by process ID.
+Process * os_getProcessSlot(ProcessID pid);
+
+//! Starts the scheduler.
+void os_startScheduler(void);
+
+//! Executes a process by instantiating a program.
+ProcessID os_exec(Program * program , Priority priority);
+
+//! Initializes scheduler arrays.
+void os_initScheduler(void);
+
+//! Returns the currently active process.
+ProcessID os_getCurrentProc(void);
+
+//! Sets the scheduling strategy.
+void os_setSchedulingStrategy(SchedulingStrategy strategy);
+
+//! Gets the current scheduling strategy.
+SchedulingStrategy os_getSchedulingStrategy(void);
+
+//! Calculates the checksum of the stack for the corresponding process of pid.
+StackChecksum os_getStackChecksum(ProcessID pid);
+
+//! Used to kill a running process and clear the corresponding process slot.
+bool os_kill(ProcessID pid);
+
+//! Enters a critical code section.
+void os_enterCriticalSection(void);
+
+//! Leaves a critical code section.
+void os_leaveCriticalSection(void);

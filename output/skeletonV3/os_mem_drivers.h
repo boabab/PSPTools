@@ -1,0 +1,58 @@
+/*! \file
+ * \brief Drivers for OS memory management.
+ *
+ * Contains management of several RAM devices of the OS. It contains everything that is associated
+ * with low level memory access.
+ *
+ * \author Lehrstuhl Informatik 11 - RWTH Aachen
+ *
+ */
+
+#include "defines.h"
+#include <inttypes.h>
+
+//----------------------------------------------------------------------------
+// Macros
+//----------------------------------------------------------------------------
+
+//! Realises a pointer to the MemDriver intSRAM__.
+#define intSRAM(& intSRAM__)
+
+
+//----------------------------------------------------------------------------
+// Typedefs
+//----------------------------------------------------------------------------
+
+//! Type used instead of uint8_t* pointers to avoid direct dereferencing.
+typedef uint16_t MemAddr;
+
+//! Type for a single value (used instead of uint8_t to increase readability)
+typedef uint8_t MemValue;
+
+//! Type of a memory driver initialisation function.
+typedef void MemoryInitHnd(void);
+
+//! Type of a memory driver read function.
+typedef MemValue MemoryReadHnd(MemAddr addr);
+
+//! Type of a memory driver write function.
+typedef void MemoryWriteHnd(MemAddr addr, MemValue value);
+
+//! The data structure for a memory driver such as intSRAM.
+typedef struct MemDriver MemDriver;
+
+
+//----------------------------------------------------------------------------
+// Variables
+//----------------------------------------------------------------------------
+
+//! This specific MemDriver is initialised in os_mem_drivers.c .
+MemDriver intSRAM__;
+
+
+//----------------------------------------------------------------------------
+// Functions
+//----------------------------------------------------------------------------
+
+//! Initialise all memory devices.
+void initMemoryDevices(void);

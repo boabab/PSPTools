@@ -1,3 +1,5 @@
-/input
-/output
+# /input
+# /output
+input/*.zip
+output/*.zip
 __pycache__
