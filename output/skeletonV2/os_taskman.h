@@ -17,7 +17,9 @@
 //----------------------------------------------------------------------------
 
 //! Main loop for the TaskManager.
+void os_taskManMain(void);
 
 //! Returns true if the TaskManager is currently open.
+bool os_taskManOpen(void);
 
 #endif

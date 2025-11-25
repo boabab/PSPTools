@@ -17,11 +17,15 @@
 //----------------------------------------------------------------------------
 
 //! Refreshes the button states.
+uint8_t os_getInput(void);
 
 //! Initializes DDR and PORT for input.
+void os_initInput(void);
 
 //! Waits for all buttons to be released.
+void os_waitForNoInput(void);
 
 //! Waits for at least one button to be pressed.
+void os_waitForInput(void);
 
 #endif

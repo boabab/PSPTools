@@ -58,5 +58,6 @@ MemDriver intSRAM__;
 //----------------------------------------------------------------------------
 
 //! Initialise all memory devices.
+void initMemoryDevices(void);
 
 #endif
