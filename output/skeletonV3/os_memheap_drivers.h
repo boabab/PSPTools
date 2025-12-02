@@ -26,7 +26,14 @@
 //----------------------------------------------------------------------------
 
 //! The structure of a heap driver which consists of a low level memory driver and heap specific information such as start, size etc...
-typedef struct Heap Heap;
+typedef struct {
+    // TODO implement.
+} Heap;
+
+//! All available heap allocation strategies.
+typedef enum {
+    // TODO implement.
+} AllocStrategy;
 
 
 //----------------------------------------------------------------------------

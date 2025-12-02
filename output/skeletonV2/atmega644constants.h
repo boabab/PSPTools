@@ -24,18 +24,18 @@
 #define AVR_SRAM_START RAMSTART
 
 //! Ending address of SRAM – First invalid address.
-#define AVR_SRAM_END(RAMEND + 1)
+#define AVR_SRAM_END (RAMEND + 1)
 
 //! Last address of SRAM.
-#define AVR_SRAM_LAST(RAMEND)
+#define AVR_SRAM_LAST (RAMEND)
 
 //! SRAM available on AVR (in bytes) (4 KB)
-#define AVR_MEMORY_SRAM(AVR_SRAM_END - AVR_SRAM_START)
+#define AVR_MEMORY_SRAM (AVR_SRAM_END - AVR_SRAM_START)
 
 //! EEPROM memory available on AVR (in bytes) (2 KB)
-#define AVR_MEMORY_EEPROM(E2END + 1)
+#define AVR_MEMORY_EEPROM (E2END + 1)
 
 //! FLASH memory available on AVR (in bytes) (64 KB)
-#define AVR_MEMORY_FLASH(FLASHEND + 1ul)
+#define AVR_MEMORY_FLASH (FLASHEND + 1ul)
 
 #endif

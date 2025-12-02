@@ -17,7 +17,7 @@
 // Macros
 //----------------------------------------------------------------------------
 
-#define NULL((void *)0)
+#define NULL ((void *)0)
 
 //! The current id of the exercise (this must be changed every two weeks).
 #define VERSUCH 3
@@ -40,19 +40,19 @@
 #define STACK_SIZE_ISR 192
 
 //! The stack size of a process.
-#define STACK_SIZE_PROC(((AVR_MEMORY_SRAM / 2) - STACK_SIZE_MAIN - STACK_SIZE_ISR) / MAX_NUMBER_OF_PROCESSES)
+#define STACK_SIZE_PROC (((AVR_MEMORY_SRAM / 2) - STACK_SIZE_MAIN - STACK_SIZE_ISR) / MAX_NUMBER_OF_PROCESSES)
 
 //! The bottom of the main stack. That is the highest address.
-#define BOTTOM_OF_MAIN_STACK(AVR_SRAM_LAST)
+#define BOTTOM_OF_MAIN_STACK (AVR_SRAM_LAST)
 
 //! The bottom of the scheduler-stack. That is the highest address.
-#define BOTTOM_OF_ISR_STACK(BOTTOM_OF_MAIN_STACK - STACK_SIZE_MAIN)
+#define BOTTOM_OF_ISR_STACK (BOTTOM_OF_MAIN_STACK - STACK_SIZE_MAIN)
 
 //! The bottom of the memory chunks for all process stacks. That is the highest address.
-#define BOTTOM_OF_PROCS_STACK(BOTTOM_OF_ISR_STACK - STACK_SIZE_ISR)
+#define BOTTOM_OF_PROCS_STACK (BOTTOM_OF_ISR_STACK - STACK_SIZE_ISR)
 
 //! The bottom of the memory chunk with number PID.
-#define PROCESS_STACK_BOTTOM(PID)(BOTTOM_OF_PROCS_STACK -((PID)* STACK_SIZE_PROC))
+#define PROCESS_STACK_BOTTOM (PID)(BOTTOM_OF_PROCS_STACK -((PID)* STACK_SIZE_PROC))
 
 //! Offset needed before the Heap starts, because global variables are put on the low addresses of the SRAM.
 #define HEAPOFFSET 250

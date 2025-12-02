@@ -18,6 +18,25 @@
 #include "os_memory.h"
 
 //----------------------------------------------------------------------------
+// Typedefs
+//----------------------------------------------------------------------------
+
+//! The response value that answers a permission request.
+typedef enum {
+    // TODO implement.
+} AccessPermission;
+
+typedef enum {
+    // TODO implement.
+} PermissionRequest;
+
+//! Which member of the RequestArgument is set.
+typedef enum {
+    // TODO implement.
+} RequestArgumentFlag;
+
+
+//----------------------------------------------------------------------------
 // Functions
 //----------------------------------------------------------------------------
 

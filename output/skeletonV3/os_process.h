@@ -40,11 +40,22 @@ typedef uint16_t Age;
 typedef uint8_t StackChecksum;
 
 //! Type for the state a specific process is currently in.
-typedef enum ProcessState ProcessState;
+typedef enum {
+    // TODO implement.
+} ProcessState;
 
-typedef union StackPointer StackPointer;
+typedef union {
+    // TODO implement.
+} StackPointer;
 
-typedef struct Process Process;
+typedef struct {
+    // TODO implement.
+} Process;
+
+//! Type for the state a specific process is currently in.
+typedef enum {
+    // TODO implement.
+} ProcessState;
 
 
 //----------------------------------------------------------------------------

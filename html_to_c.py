@@ -17,6 +17,8 @@ from bs4 import BeautifulSoup, Tag
 
 MAX_LINE_WIDTH = 100
 
+TODO_IMPLEMENT_COMMENT = "// TODO implement."
+
 NOISE_SELECTORS = [
     "div.dynheader",
     "div.dyncontent",
@@ -45,8 +47,9 @@ class FileDoc:
     sections: list[tuple[str, str]] = field(default_factory=list)
     includes: list[str] = field(default_factory=list)
     macros: list[SymbolDoc] = field(default_factory=list)
-    variables: list[SymbolDoc] = field(default_factory=list)
     typedefs: list[SymbolDoc] = field(default_factory=list)
+    enums: list[SymbolDoc] = field(default_factory=list)
+    variables: list[SymbolDoc] = field(default_factory=list)
     functions: list[SymbolDoc] = field(default_factory=list)
 
 # ---------------------------------------------------------------------------
@@ -261,10 +264,11 @@ def _parse_members(soup: BeautifulSoup) -> tuple[list[SymbolDoc], list[SymbolDoc
 
         details_map[member_id] = (signature, detailed_text, params_list)
 
-    macros, typedefs, vars, funcs = [], [], [], []
+    macros, typedefs, enums, vars, funcs = [], [], [], [], []
     section_map = {
         "Macros": ("macro", macros),
         "Typedefs": ("typedef", typedefs),
+        "Enumerations": ("enum", enums),
         "Variables": ("variable", vars),
         "Functions": ("function", funcs),
     }
@@ -314,6 +318,13 @@ def _parse_members(soup: BeautifulSoup) -> tuple[list[SymbolDoc], list[SymbolDoc
         brief = data.get("brief", "").strip()
         detailed_body = detailed_body.strip()
 
+        # fix macro spacing: "#define NAME(args)" → "#define NAME (args)"
+        if kind == "macro":
+            sig = re.sub(r"(\b[A-Za-z_][A-Za-z0-9_]*)\(", r"\1 (", sig)
+        
+        if kind == "typedef":
+            sig.split(" ")[-1]
+
         target_list.append(SymbolDoc(
             member_id=mem_id,
             kind=data.get("kind", "unknown"),
@@ -323,7 +334,7 @@ def _parse_members(soup: BeautifulSoup) -> tuple[list[SymbolDoc], list[SymbolDoc
             params=params_list
         ))
 
-    return macros, typedefs, vars, funcs
+    return macros, typedefs, enums, vars, funcs
 
 # ---------------------------------------------------------------------------
 # Output Generation
@@ -360,43 +371,68 @@ def _render_file_header(doc: FileDoc) -> str:
     return "\n".join(out)
 
 def _render_symbol(sym: SymbolDoc, output_kind: str) -> str:
-    code_lines = []
+    code_lines: list[str] = []
     
-    # Logic: 
-    # if kind == c: Use detailed_text. If detailed_text missing, use brief. Include params.
-    # if kind == h: Use brief. No params.
-
+    # Comments: header uses brief only; .c uses detailed+params
     if output_kind == "h":
         if sym.brief:
             code_lines.append(f"//! {sym.brief}")
-        # If no brief, typically header remains silent or uses one-liner from detailed, 
-        # but strict separation suggests using only brief unless completely empty.
     else:
-        # Outputting .c (implementation)
+        # .c: use detailed_text if available, otherwise brief
         description_to_use = sym.detailed_text
-        
-        # Fallback: If detailed text is empty, grab the brief.
-        # This handles the case where HTML had brief="X" and detailed="<param table>".
         if not description_to_use:
             description_to_use = sym.brief
-            
-        # Render the full block with params
         comment_block = _format_doxygen_block(description_to_use, sym.params)
         if comment_block:
             code_lines.append(comment_block)
 
     sig = sym.signature.strip()
-    
     if sym.kind == "function":
-        # format ugly signatures
-        # e.g. func(Heap * heap , size_t size) -> func(Heap *heap, size_t size)
-        sig = sig.replace(' ,', ',').replace('* ', '*')
-    
+        # normalize ugly spacing in signatures
+        sig = sig.replace(" ,", ",").replace("* ", "*")
+
+    # Function implementation stub in .c
     if sym.kind == "function" and output_kind == "c":
-            sig = sig.rstrip(";").strip()
-            code_lines.append(f"{sig} {{")
-            code_lines.append("    // TODO implement.")
-            code_lines.append("}")
+        sig = sig.rstrip(";").strip()
+        code_lines.append(f"{sig} {{")
+        code_lines.append(f"    {TODO_IMPLEMENT_COMMENT}")
+        code_lines.append("}")
+
+    # Typedef’d structs and enums as TODO blocks in .c
+    elif sym.kind in ("typedef", "enum"):
+        base = sig.rstrip(";").strip()
+        handled = False
+
+        if sym.kind == "typedef":
+            # Match: typedef struct Heap Heap   or   typedef enum Foo Foo
+            m = re.match(
+                r"typedef\s+(struct|enum|union)\s+[A-Za-z_][A-Za-z0-9_]*\s+([A-Za-z_][A-Za-z0-9_]*)\s*$",
+                base,
+            )
+            if m:
+                kw = m.group(1)    # "struct" or "enum"
+                name = m.group(2)  # typedef name
+                code_lines.append(f"typedef {kw} {{")
+                code_lines.append(f"    {TODO_IMPLEMENT_COMMENT}")
+                code_lines.append(f"}} {name};")
+                handled = True
+        else:
+            # Plain enum: enum AllocStrategy
+            m = re.match(r"enum\s+([A-Za-z_][A-Za-z0-9_]*)\s*$", base)
+            if m:
+                name = m.group(1)
+                code_lines.append("typedef enum {")
+                code_lines.append(f"    {TODO_IMPLEMENT_COMMENT}")
+                code_lines.append(f"}} {name};")
+                handled = True
+
+        if not handled:
+            # Fallback: just ensure trailing semicolon
+            if _needs_semicolon(sig):
+                sig += ";"
+            code_lines.append(sig)
+
+    # All other symbols: just emit with optional trailing semicolon
     else:
         if _needs_semicolon(sig):
             sig += ";"
@@ -405,11 +441,12 @@ def _render_symbol(sym: SymbolDoc, output_kind: str) -> str:
     code_lines.append("")
     return "\n".join(code_lines)
 
+
 def generate_code(html_path: str | Path, output_kind: str = "c") -> str:
     html = Path(html_path).read_text(encoding="utf-8", errors="ignore")
     soup = BeautifulSoup(html, "html.parser")
 
-    macros, typedefs, vars, funcs = _parse_members(soup)
+    macros, typedefs, enums, vars, funcs = _parse_members(soup)
     detailed_text, sections = _extract_file_detailed(soup)
     
     doc = FileDoc(
@@ -419,6 +456,7 @@ def generate_code(html_path: str | Path, output_kind: str = "c") -> str:
         includes=_extract_includes(soup),
         macros=macros,
         typedefs=typedefs,
+        enums=enums,
         variables=vars,
         functions=funcs
     )
@@ -442,9 +480,10 @@ def generate_code(html_path: str | Path, output_kind: str = "c") -> str:
 
     groups = [
         ("Macros", doc.macros),
-        ("Typedefs", doc.typedefs),
+        # Enumerations are under the "Typedefs" section
+        ("Typedefs", doc.typedefs + doc.enums),
         ("Variables", doc.variables),
-        ("Functions", doc.functions)
+        ("Functions", doc.functions),
     ]
 
     for title, group_list in groups:

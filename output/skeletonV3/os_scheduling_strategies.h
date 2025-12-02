@@ -18,7 +18,9 @@
 //----------------------------------------------------------------------------
 
 //! Structure used to store specific scheduling informations such as a time slice.
-typedef struct SchedulingInformation SchedulingInformation;
+typedef struct {
+    // TODO implement.
+} SchedulingInformation;
 
 
 //----------------------------------------------------------------------------

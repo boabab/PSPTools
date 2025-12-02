@@ -42,7 +42,9 @@ typedef MemValue MemoryReadHnd(MemAddr addr);
 typedef void MemoryWriteHnd(MemAddr addr, MemValue value);
 
 //! The data structure for a memory driver such as intSRAM.
-typedef struct MemDriver MemDriver;
+typedef struct {
+    // TODO implement.
+} MemDriver;
 
 
 //----------------------------------------------------------------------------

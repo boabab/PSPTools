@@ -19,7 +19,14 @@
 //----------------------------------------------------------------------------
 
 //! The enum specifying which scheduling strategies exist.
-typedef enum SchedulingStrategy SchedulingStrategy;
+typedef enum {
+    // TODO implement.
+} SchedulingStrategy;
+
+//! The enum specifying which scheduling strategies exist.
+typedef enum {
+    // TODO implement.
+} SchedulingStrategy;
 
 
 //----------------------------------------------------------------------------
