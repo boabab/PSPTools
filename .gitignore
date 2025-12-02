@@ -1,5 +1,5 @@
 # /input
 # /output
-input/*.zip
+# input/*.zip
 output/*.zip
 __pycache__
