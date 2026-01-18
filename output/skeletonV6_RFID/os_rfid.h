@@ -1,0 +1,27 @@
+/*! \file
+ * \brief The driver for the RFID extension board.
+ *
+ * All necessary functions to access the RFID reader are present here.
+ *
+ * \author Lehrstuhl Informatik 11 - RWTH Aachene
+ *
+ */
+
+#ifndef _OS_RFID_H
+#define _OS_RFID_H
+
+#include <avr/interrupt.h>
+#include <stdbool.h>
+#include <stdint.h>
+
+//----------------------------------------------------------------------------
+// Functions
+//----------------------------------------------------------------------------
+
+//! Initializes the RFID .
+void rfid_init();
+
+//! Receives one RFID-Tag. This is the only one external called function.
+uint64_t rfid_receive(void);
+
+#endif

@@ -45,7 +45,7 @@ Filename reconstruction is handled automatically.
 Generate skeleton `.c` and `.h` files:
 
 ```
-python3 doxygen_to_skeleton.py path/to/doxygen.zip -o output_dir
+python doxygen_to_skeleton.py input/DoxygenV6_LED.zip -o output/skeletonV6_LED
 ```
 
 Result:
